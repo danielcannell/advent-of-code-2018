@@ -1,0 +1,10 @@
+[package]
+name = "advent-of-code-2018"
+version = "0.1.0"
+authors = ["Daniel Cannell <danielcannell@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+docopt = "1"
+serde = "1.0"
+serde_derive = "1.0"
