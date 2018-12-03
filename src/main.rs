@@ -3,6 +3,7 @@ use serde_derive::Deserialize;
 
 mod day1;
 mod day2;
+mod day3;
 
 const USAGE: &'static str = "
 Advent of code 2018
@@ -28,6 +29,7 @@ fn main() {
     match args.arg_day {
         Some(1) => day1::solve(),
         Some(2) => day2::solve(),
+        Some(3) => day3::solve(),
         _ => println!("Unknown day"),
     }
 }
