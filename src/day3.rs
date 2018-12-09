@@ -14,7 +14,7 @@ pub fn solve() {
     println!("Part 2: {}", part2(&lines));
 }
 
-fn part1(lines: &Vec<Claim>) -> u32 {
+fn part1(lines: &[Claim]) -> u32 {
     let width = lines.iter().map(|c| c.left + c.width).max().unwrap();
     let height = lines.iter().map(|c| c.top + c.height).max().unwrap();
     let mut cloth = Cloth::new(width as usize, height as usize);
@@ -26,7 +26,7 @@ fn part1(lines: &Vec<Claim>) -> u32 {
     cloth.contested()
 }
 
-fn part2(lines: &Vec<Claim>) -> u32 {
+fn part2(lines: &[Claim]) -> u32 {
     let width = lines.iter().map(|c| c.left + c.width).max().unwrap();
     let height = lines.iter().map(|c| c.top + c.height).max().unwrap();
     let mut cloth = Cloth::new(width as usize, height as usize);

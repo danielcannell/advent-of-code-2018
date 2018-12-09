@@ -12,11 +12,11 @@ pub fn solve() {
     println!("Part 2: {}", part2(&lines));
 }
 
-fn part1(lines: &Vec<i32>) -> i32 {
+fn part1(lines: &[i32]) -> i32 {
     lines.iter().sum()
 }
 
-fn part2(lines: &Vec<i32>) -> i32 {
+fn part2(lines: &[i32]) -> i32 {
     let mut freq = 0;
 
     let mut seen = HashSet::new();

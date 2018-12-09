@@ -8,8 +8,10 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
+mod day9;
 
-const USAGE: &'static str = "
+const USAGE: &str = "
 Advent of code 2018
 
 Usage:
@@ -38,6 +40,8 @@ fn main() {
         Some(5) => day5::solve(),
         Some(6) => day6::solve(),
         Some(7) => day7::solve(),
+        Some(8) => day8::solve(),
+        Some(9) => day9::solve(),
         _ => println!("Unknown day"),
     }
 }

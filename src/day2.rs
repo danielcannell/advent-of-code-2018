@@ -7,7 +7,7 @@ pub fn solve() {
     println!("Part 2: {}", part2(&lines));
 }
 
-fn part1(lines: &Vec<&str>) -> u32 {
+fn part1(lines: &[&str]) -> u32 {
     let mut dup2 = 0u32;
     let mut dup3 = 0u32;
 
@@ -28,7 +28,7 @@ fn part1(lines: &Vec<&str>) -> u32 {
     dup2 * dup3
 }
 
-fn part2(lines: &Vec<&str>) -> String {
+fn part2(lines: &[&str]) -> String {
     for i in 0..lines.len() {
         for j in (i + 1)..lines.len() {
             let (id1, id2) = (lines[i], lines[j]);

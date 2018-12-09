@@ -1,8 +1,7 @@
 use std::str::FromStr;
-use std::collections::HashSet;
 
+use failure::{err_msg, Error};
 use regex::Regex;
-use failure::{Error, err_msg};
 
 pub fn solve() {
     let lines: Vec<Instruction> = include_str!("data/day7.txt")
@@ -14,7 +13,7 @@ pub fn solve() {
     println!("Part 2: {}", part2(&lines));
 }
 
-fn part1(lines: &Vec<Instruction>) -> String {
+fn part1(lines: &[Instruction]) -> String {
     let mut sleigh = Sleigh::new(lines);
 
     while let Some(step) = sleigh.next_step() {
@@ -24,7 +23,7 @@ fn part1(lines: &Vec<Instruction>) -> String {
     sleigh.sequence()
 }
 
-fn part2(lines: &Vec<Instruction>) -> u32 {
+fn part2(lines: &[Instruction]) -> u32 {
     let mut sleigh = Sleigh::new(lines);
     let mut helpers = Helpers::new(5);
     let mut time = 0;
@@ -35,7 +34,7 @@ fn part2(lines: &Vec<Instruction>) -> u32 {
                 let duration = step as u32 - 'A' as u32 + 61;
                 elf.give(step, duration);
             } else {
-                break
+                break;
             }
         }
 
@@ -78,13 +77,17 @@ impl Elf {
     }
 
     fn is_idle(&self) -> bool {
-        if let Elf::Idle = self { true } else { false }
+        if let Elf::Idle = self {
+            true
+        } else {
+            false
+        }
     }
 }
 
 #[derive(Debug)]
 struct Helpers {
-    elves: Vec<Elf>
+    elves: Vec<Elf>,
 }
 
 impl Helpers {
@@ -97,7 +100,7 @@ impl Helpers {
     fn get_idle(&mut self) -> Option<&mut Elf> {
         for elf in &mut self.elves {
             if elf.is_idle() {
-                return Some(elf)
+                return Some(elf);
             }
         }
 
@@ -129,7 +132,7 @@ impl Sleigh {
     }
 
     fn next_step(&mut self) -> Option<char> {
-        'outer: for i in 0 .. self.remaining.len() {
+        'outer: for i in 0..self.remaining.len() {
             let step = self.remaining[i];
 
             for instr in &self.instructions {
@@ -154,7 +157,7 @@ impl Sleigh {
     }
 
     fn done(&self) -> bool {
-        self.remaining.len() == 0
+        self.remaining.is_empty()
     }
 }
 
@@ -176,6 +179,6 @@ impl FromStr for Instruction {
                 .parse()?)
         };
 
-        Ok(Instruction ( get(1)?, get(2)? ) )
+        Ok(Instruction(get(1)?, get(2)?))
     }
 }

@@ -36,7 +36,7 @@ fn part2(guards: &HashMap<u32, Guard>) -> u32 {
     id * minute
 }
 
-fn parse_records(records: &Vec<Record>) -> HashMap<u32, Guard> {
+fn parse_records(records: &[Record]) -> HashMap<u32, Guard> {
     let mut guards = HashMap::new();
     let mut guard = &mut Guard::new();
     let mut start = 0;
@@ -44,7 +44,7 @@ fn parse_records(records: &Vec<Record>) -> HashMap<u32, Guard> {
     for record in records {
         match record.event {
             Event::BeginShift(id) => {
-                guard = guards.entry(id).or_insert(Guard::new());
+                guard = guards.entry(id).or_insert_with(Guard::new);
             }
             Event::FallAsleep => {
                 start = record.datetime.minute();
@@ -124,9 +124,9 @@ impl FromStr for Record {
         let event = {
             if let Some(group) = caps.get(2) {
                 Event::BeginShift(group.as_str().parse()?)
-            } else if let Some(_) = caps.get(3) {
+            } else if caps.get(3).is_some() {
                 Event::FallAsleep
-            } else if let Some(_) = caps.get(4) {
+            } else if caps.get(4).is_some() {
                 Event::WakeUp
             } else {
                 return Err(err_msg("Invalid format"));

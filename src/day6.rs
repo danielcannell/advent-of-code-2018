@@ -14,7 +14,7 @@ pub fn solve() {
     println!("Part 2: {}", part2(&lines));
 }
 
-fn part1(lines: &Vec<Point>) -> i32 {
+fn part1(lines: &[Point]) -> i32 {
     let x_span = (
         lines.iter().map(|p| p.x).min().unwrap(),
         lines.iter().map(|p| p.x).max().unwrap(),
@@ -39,7 +39,7 @@ fn part1(lines: &Vec<Point>) -> i32 {
     *areas.values().max().unwrap()
 }
 
-fn part2(lines: &Vec<Point>) -> i32 {
+fn part2(lines: &[Point]) -> i32 {
     let x_span = (
         lines.iter().map(|p| p.x).min().unwrap(),
         lines.iter().map(|p| p.x).max().unwrap(),
@@ -113,11 +113,11 @@ impl Part1Grid {
             *result.entry(self.ids[i]).or_insert(0) += 1;
         }
 
-        for i in 0 .. self.width {
+        for i in 0..self.width {
             result.remove(&self.ids[i]);
             result.remove(&self.ids[i + (self.height - 1) * self.width]);
         }
-        for i in 0 .. self.height {
+        for i in 0..self.height {
             result.remove(&self.ids[i * self.width]);
             result.remove(&self.ids[i * self.width + (self.width - 1)]);
         }
