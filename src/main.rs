@@ -10,6 +10,7 @@ mod day6;
 mod day7;
 mod day8;
 mod day9;
+mod day10;
 
 const USAGE: &str = "
 Advent of code 2018
@@ -42,6 +43,7 @@ fn main() {
         Some(7) => day7::solve(),
         Some(8) => day8::solve(),
         Some(9) => day9::solve(),
+        Some(10) => day10::solve(),
         _ => println!("Unknown day"),
     }
 }
